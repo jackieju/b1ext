@@ -21,3 +21,5 @@ module Com::Sap::Sbo::App::Jaw
 end
 module Com::Sap::Sbo::App::Jaw::Bo
 end
+module Com::Sap::Sbo::App::Jaw::Bo::Gen
+end

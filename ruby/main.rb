@@ -1,14 +1,14 @@
 def start
         p "hello java this is ruby"
         path = "#{File.dirname(__FILE__)}/**/*.rb"   # in utility.rb
-        path = "/var/sa/ruby/extroot/**/*.rb"
+        path = "/var/sa/script/extroot/**/*.rb"
         p "load ruby from path #{path}"
         #require "/var/sa/ruby/modules.rb"
         #require "/var/sa/ruby/mp.rb"
         #require "/var/sa/ruby/boextension.rb"
-        load "/var/sa/ruby/modules.rb"
-        load "/var/sa/ruby/mp.rb"
-        load "/var/sa/ruby/boextension.rb"
+        load "/var/sa/script/modules.rb"
+        load "/var/sa/script/mp.rb"
+        require "/var/sa/script/boextension.rb"
 
         count = 0
          Dir[path].each { |f|
@@ -100,3 +100,14 @@ def loadObject(path, p=nil, base_path = nil)
 end
 
 
+def doAction(cls, action)
+    if cls == nil || action == nil
+        return
+    end
+    ob = loadObject(cls)
+    if ob == nil
+        p "error: loadobject failed(#{cls})"
+    else
+        return ob.send(action.to_sym)
+    end
+end
